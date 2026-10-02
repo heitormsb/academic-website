@@ -14,7 +14,6 @@ profile:
     <p>6823 St. Charles Ave.</p>
     <p>New Orleans, LA 70118</p>
     <p class="more-info-contact"><i class="fa-solid fa-envelope"></i> <a href="mailto:hbarbosa@tulane.edu">hbarbosa@tulane.edu</a></p>
-    <p class="more-info-contact"><i class="fa-solid fa-phone"></i> <a href="tel:+15043002971">(504) 300-2971</a></p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
