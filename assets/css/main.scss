@@ -1,0 +1,332 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+// Local override of al_folio_core's assets/css/main.scss (v1.0.15).
+// The block of @use rules below is copied verbatim from the gem; everything after
+// "Site customizations" is specific to this site. Track drift with:
+//   bundle exec al-folio upgrade overrides audit
+
+/* Built-in Sass modules you’ll likely use across partials */
+@use "sass:math";
+@use "sass:string";
+
+/* Configure your design tokens BEFORE loading any of your partials.
+   Make sure `_sass/_variables.scss` declares `$max-content-width: 72rem !default;` */
+@use "variables" with (
+  $max-content-width: {{site.max_width | default: "930px"}}
+);
+
+/* Your project partials — convert these files to `@use "variables";`
+   (or `@use "variables" as *;`) inside each file and qualify variables if needed. */
+@use "themes";
+@use "layout";
+
+// Core styles organized by usage
+@use "typography";
+@use "navbar";
+@use "footer";
+@use "blog";
+@use "publications";
+@use "components";
+@use "utilities";
+
+// Other specialized styles
+@use "tabs";
+@use "teachings";
+@use "typograms";
+
+/*******************************************************************************
+ * Site customizations
+ ******************************************************************************/
+
+// Palette: Tulane green in light mode, a lighter mint green in dark mode.
+:root {
+  --global-theme-color: #006747;
+  --global-hover-color: #00875d;
+  --global-code-bg-color: rgba(0, 103, 71, 0.05);
+  --site-surface-color: #f5f8f6;
+  --site-border-color: rgba(0, 103, 71, 0.16);
+}
+
+html[data-theme="dark"] {
+  --global-theme-color: #5ec4a0;
+  --global-hover-color: #7fd6b6;
+  --global-hover-text-color: #1c1c1d;
+  --site-surface-color: #232527;
+  --site-border-color: rgba(94, 196, 160, 0.22);
+}
+
+// Section headings on content pages
+.post article h2 {
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--global-divider-color);
+}
+
+// Profile block on the landing page
+.profile .more-info {
+  margin-top: 0.75rem;
+  font-family: inherit;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--global-text-color-light);
+
+  p {
+    display: block;
+  }
+
+  .more-info-contact {
+    margin-top: 0.2rem;
+
+    i {
+      width: 1.1rem;
+      color: var(--global-theme-color);
+    }
+  }
+}
+
+.profile {
+  margin-bottom: 1.25rem;
+}
+
+.profile img {
+  border-radius: 6px;
+}
+
+@media (max-width: 576px) {
+  .profile.float-right,
+  .profile.float-left {
+    float: none !important;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// "Interests" and "Education" summary on the landing page
+.profile-highlights {
+  clear: both;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2.5rem;
+  margin: 1.75rem 0 0.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--site-surface-color);
+  border: 1px solid var(--site-border-color);
+  border-radius: 8px;
+
+  h3 {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--global-theme-color);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+ul.highlight-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    gap: 0.65rem;
+    align-items: baseline;
+    margin-bottom: 0.55rem;
+    line-height: 1.4;
+  }
+
+  i {
+    flex: 0 0 1.1rem;
+    text-align: center;
+    color: var(--global-theme-color);
+  }
+
+  span {
+    font-size: 0.9rem;
+    color: var(--global-text-color-light);
+  }
+}
+
+// Social icons and contact note at the bottom of the landing page
+.social {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--global-divider-color);
+
+  .contact-icons {
+    font-size: 2rem;
+
+    a {
+      margin: 0 0.4rem;
+    }
+
+    a img,
+    a svg {
+      width: 1.9rem;
+      height: 2rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .contact-note {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--global-text-color-light);
+  }
+}
+
+// Research page
+.research-current {
+  padding: 1.1rem 1.4rem;
+  background: var(--site-surface-color);
+  border: 1px solid var(--site-border-color);
+  border-left: 3px solid var(--global-theme-color);
+  border-radius: 6px;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.research-entry {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--global-divider-color);
+
+  &:first-child {
+    padding-top: 0.5rem;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+
+.research-period {
+  padding-top: 0.15rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--global-theme-color);
+}
+
+.research-content {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+
+  @media (max-width: 576px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.research-text {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  h3 {
+    margin: 0 0 0.2rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin-bottom: 0.6rem;
+  }
+}
+
+.research-affiliation {
+  font-size: 0.9rem;
+  color: var(--global-text-color-light);
+}
+
+.research-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.research-thumb {
+  flex: 0 0 190px;
+  height: 140px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--site-border-color);
+  border-radius: 6px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 576px) {
+    flex-basis: auto;
+    width: 100%;
+    height: 170px;
+  }
+}
+
+// Individual project pages
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
+  color: var(--global-text-color-light);
+
+  i {
+    margin-right: 0.3rem;
+    color: var(--global-theme-color);
+  }
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+a.project-link {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  border: 1px solid var(--global-theme-color);
+  border-radius: 4px;
+
+  &:hover {
+    text-decoration: none;
+    color: var(--global-hover-text-color);
+    background: var(--global-theme-color);
+  }
+}
+
+// Footer: a short, quiet line below the content
+footer.sticky-bottom {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--global-text-color-light);
+}

@@ -1,0 +1,29 @@
+---
+layout: none
+permalink: /cv/
+title: cv
+nav: true
+nav_order: 3
+sitemap: false
+cv_pdf: /assets/pdf/Heitor_Barbosa_CV.pdf
+---
+
+{%- comment -%} The "cv" menu item opens the PDF itself, like the CV icon on the landing page. The PDF is rendered from _data/cv.yml (see
+bin/render_cv.py). {%- endcomment -%} {%- assign cv_pdf_url = page.cv_pdf | relative_url -%}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CV | {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="{{ page.cv_pdf | absolute_url }}" />
+    <meta http-equiv="refresh" content="0; url={{ cv_pdf_url }}" />
+    <script>
+      window.location.replace("{{ cv_pdf_url }}");
+    </script>
+  </head>
+  <body>
+    <p>Opening the CV&hellip; If nothing happens, <a href="{{ cv_pdf_url }}">open the PDF here</a>.</p>
+  </body>
+</html>
