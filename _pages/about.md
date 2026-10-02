@@ -32,7 +32,7 @@ I am a Ph.D. student in Computer Science at [Tulane University](https://sse.tula
 
 Before Tulane, I earned a B.S. in Software Engineering from the [University of Brasília (UnB)](https://www.unb.br/) in Brazil. At UnB, I worked as a machine learning researcher at AI.lab on Justiça 4.0, a program of Brazil's National Council of Justice and the United Nations Development Programme, where I grouped similar court cases with unsupervised learning. I also led the AI team of PAULA, an offline mobile app that helps semi-literate and illiterate residents of Paranoá learn to read and write, and helped build [DataFabric-DermAlert]({{ '/projects/datafabric-dermalert/' | relative_url }}), a governed data-integration tool for skin cancer screening in Brazil's public health system.
 
-I have also built production AI systems in industry, including retrieval-augmented generation pipelines and fine-tuned small language models for legal documents at Forlex, document-understanding models at SantoDigital, and large-scale data pipelines at Poder360.
+Before starting my Ph.D., I also spent over three years building AI systems in industry, from large-scale data pipelines to retrieval-augmented generation for legal documents. That experience is what drew me to the question of how to make these systems more reliable.
 
 <div class="profile-highlights">
   <div>
