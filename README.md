@@ -1,6 +1,6 @@
 # Academic Website of Heitor Marques S. Barbosa
 
-Source of my academic website, **https://heitormsb.github.io**. I am a Ph.D. student in Computer Science at Tulane University.
+Source of my academic website, **https://heitormsb.github.io/academic-website/**. I am a Ph.D. student in Computer Science at Tulane University.
 
 The site is built with [Jekyll](https://jekyllrb.com/) on the [al-folio](https://github.com/alshedivat/al-folio) v1 starter and deployed to
 GitHub Pages by the `Deploy site` workflow on every push to `main`.
@@ -23,7 +23,7 @@ GitHub Pages by the `Deploy site` workflow on every push to `main`.
 
 ```bash
 bundle install
-bundle exec jekyll serve   # http://localhost:4000/
+bundle exec jekyll serve   # http://localhost:4000/academic-website/
 ```
 
 ## Regenerate the PDF CV
